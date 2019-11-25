@@ -1,0 +1,26 @@
+import requests
+from bs4 import BeautifulSoup
+from datetime import date
+
+fv = 'https://www.finviz.com/screener.ashx?v=152&s=ta_topgainers&f=sh_opt_optionshort,sh_price_u3&o=-change&c=1,65,66'
+
+page = requests.get(fv)
+
+soup = BeautifulSoup(page.text, 'html.parser')
+
+companyOne = soup.find(class_='table-dark-row-cp')
+companyTwo = soup.find(class_='table-light-row-cp')
+
+companyDataOne = companyOne.find_all('a')
+companyDataTwo = companyTwo.find_all('a')
+
+today = date.today()
+print(today)
+
+for companyOne in companyDataOne:
+    data = companyOne.contents[0]
+    print(*data, sep="", end=" ")
+print()
+for companyTwo in companyDataTwo:
+    dataTwo = companyTwo.contents[0]
+    print(*dataTwo, sep="", end=" ")
