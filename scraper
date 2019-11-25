@@ -2,6 +2,7 @@ import requests
 from bs4 import BeautifulSoup
 from datetime import date
 
+# This link shows top two highest gaining penny stocks for the day
 fv = 'https://www.finviz.com/screener.ashx?v=152&s=ta_topgainers&f=sh_opt_optionshort,sh_price_u3&o=-change&c=1,65,66'
 
 page = requests.get(fv)
